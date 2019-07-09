@@ -109,7 +109,7 @@ after_bundle do
   rails_command 'db:drop db:create db:migrate'
   generate('simple_form:install', '--bootstrap')
   generate(:controller, 'short_links', 'home', '--skip-routes', '--no-test-framework')
-  generate(:model, 'url', 'token')
+  generate(:model, 'short_link', 'url', 'token')
 
   # Routes
   ########################################
@@ -149,12 +149,9 @@ RUBY
 
   # ShortLink Model
   ########################################
-  # ShortLink Model
   run 'rm app/models/short_link.rb'
   file 'app/models/short_link.rb', <<-RUBY
 class ShortLink < ApplicationRecord
-  belongs_to :user
-
   validates :url, presence: true, format: { with: /https?:\/\/[\S]+/ }
   validates :token, uniqueness: true
   validate :token_not_changed # token unchangable => ensure eternal fidelity of links
