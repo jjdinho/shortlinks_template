@@ -104,7 +104,7 @@ environment generators
 # AFTER BUNDLE
 ########################################
 after_bundle do
-  # Generators: db + simple form + pages controller
+  # Generators: db + simple form + short_links controller & model
   ########################################
   rails_command 'db:drop db:create db:migrate'
   generate('simple_form:install', '--bootstrap')
@@ -113,7 +113,7 @@ after_bundle do
 
   # Routes
   ########################################
-  route "root to: 'pages#home'"
+  route "root to: 'short_links#home'"
 
   # Git ignore
   ########################################
